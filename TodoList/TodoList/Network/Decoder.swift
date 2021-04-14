@@ -10,7 +10,7 @@ import Foundation
 class Decoder {
     static func decode(task: Data) -> [Task]? {
         let formatter = DateFormatter()
-        formatter.dateFormat = "YYYY-MM-DD'T'HH:mm:ss.SSS"
+        formatter.dateFormat = "YYYY-MM-DD'T'HH:mm:ss"
         
         let decoder = JSONDecoder()
         decoder.dateDecodingStrategy = .formatted(formatter)
@@ -19,7 +19,7 @@ class Decoder {
     
     static func decode(result: Data) -> Task? {
         let formatter = DateFormatter()
-        formatter.dateFormat = "YYYY-MM-DD'T'HH:mm:ss.SSS"
+        formatter.dateFormat = "YYYY-MM-DD'T'HH:mm:ss"
         
         let decoder = JSONDecoder()
         decoder.dateDecodingStrategy = .formatted(formatter)

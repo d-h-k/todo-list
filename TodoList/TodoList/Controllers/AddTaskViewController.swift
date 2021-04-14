@@ -43,6 +43,10 @@ class AddTaskViewController: UIViewController {
         self.contents = contents
     }
     
+    func update(status : CardStatus){
+        self.status = status
+    }
+    
     @objc func adjustPopUp(noti: Notification) {
         if isKeyboardActive != true {
             guard let userInfo = noti.userInfo else { return }

@@ -87,7 +87,7 @@ class MainViewController: UIViewController {
         guard let vc = storyboard?.instantiateViewController(withIdentifier: "Add") as? AddTaskViewController else {
             return
         }
-        vc.status = .add
+        vc.update(status : .add)
         vc.modalPresentationStyle = .overFullScreen
         present(vc, animated: true, completion: nil)
     }
