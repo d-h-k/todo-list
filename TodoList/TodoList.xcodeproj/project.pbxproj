@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BF4DEED4262722E700FE5207 /* AddTaskUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF4DEED3262722E700FE5207 /* AddTaskUseCase.swift */; };
 		BF7EB26A261C3CBF003EB682 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7EB269261C3CBF003EB682 /* AppDelegate.swift */; };
 		BF7EB26C261C3CBF003EB682 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7EB26B261C3CBF003EB682 /* SceneDelegate.swift */; };
 		BF7EB271261C3CBF003EB682 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BF7EB26F261C3CBF003EB682 /* Main.storyboard */; };
@@ -60,6 +61,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		BF4DEED3262722E700FE5207 /* AddTaskUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTaskUseCase.swift; sourceTree = "<group>"; };
 		BF7EB266261C3CBF003EB682 /* TodoList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TodoList.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BF7EB269261C3CBF003EB682 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BF7EB26B261C3CBF003EB682 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -203,6 +205,7 @@
 				D09A57F126253ADB00DA620A /* TaskViewController.swift */,
 				D09A57E72625380A00DA620A /* MainViewController.swift */,
 				BFA7556C261FEBE2008FB904 /* AddTaskViewController.swift */,
+				BF4DEED3262722E700FE5207 /* AddTaskUseCase.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -414,6 +417,7 @@
 				D09A58352625748800DA620A /* DragDelegate.swift in Sources */,
 				BFA75568261FE696008FB904 /* HTTPMethod.swift in Sources */,
 				BF7EB26A261C3CBF003EB682 /* AppDelegate.swift in Sources */,
+				BF4DEED4262722E700FE5207 /* AddTaskUseCase.swift in Sources */,
 				D0E6A9DF262414B600E9B023 /* CardButton.swift in Sources */,
 				BF7EB26C261C3CBF003EB682 /* SceneDelegate.swift in Sources */,
 				BF7EB2A0261C418B003EB682 /* Notification+Extension.swift in Sources */,

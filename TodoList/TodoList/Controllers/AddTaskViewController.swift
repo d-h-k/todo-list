@@ -24,14 +24,11 @@ class AddTaskViewController: UIViewController {
     private var contents: String?
     private var isKeyboardActive: Bool = false
     
+    private let addTaskUseCase = AddTaskUseCase()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        switch status {
-        case .update:
-            setUpdateUI()
-        default:
-            break
-        }
+        updateUI()
         
         NotificationCenter.default.addObserver(self, selector: #selector(adjustPopUp), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(adjustPopUpDown), name: UIResponder.keyboardWillHideNotification, object: nil)
@@ -43,32 +40,33 @@ class AddTaskViewController: UIViewController {
         self.contents = contents
     }
     
+    func updateUI() {
+        status == .update ? setUpdateUI() : ()
+    }
+    
     func update(status : CardStatus){
         self.status = status
     }
     
     @objc func adjustPopUp(noti: Notification) {
-        if isKeyboardActive != true {
-            guard let userInfo = noti.userInfo else { return }
-            guard let keyboardFrame = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else { return }
-            popUp.frame.origin.y -= keyboardFrame.height / 3
-            isKeyboardActive = true
+        
+        guard isKeyboardActive != true,
+              let userInfo = noti.userInfo,
+              let keyboardFrame = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else {
+            return
         }
+        popUp.frame.origin.y -= keyboardFrame.height / 3
+        isKeyboardActive = true
     }
     
     @objc func adjustPopUpDown(noti: Notification) {
-        guard let userInfo = noti.userInfo else { return }
-        guard let keyboardFrame = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else { return }
+        guard let userInfo = noti.userInfo,
+              let keyboardFrame = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else {
+            return
+        }
         popUp.frame.origin.y += keyboardFrame.height / 3
     }
     
-    func encodeTask() -> Data? {
-        guard let title = titleTextField.text, let content = contentTextField.text else {
-            return nil
-        }
-        return Task(title: title, contents: content, category: TaskState.todo).encode()
-    }
-
     func setUpdateUI() {
         cardTitle.text = "카드 수정"
         positiveButton.setTitle("수정", for: .normal)
@@ -77,11 +75,7 @@ class AddTaskViewController: UIViewController {
     }
     
     @IBAction func registerButtonTouched(_ sender: UIButton) {
-        guard let data = encodeTask() else {
-            return
-        }
-        UseCase().postTask(body: data) { (result) in
-        }
+        addTaskUseCase.postTask(title: titleTextField.text, content: contentTextField.text)
     }
     
     @IBAction func closeButtonTouched(_ sender: UIButton) {
