@@ -16,7 +16,7 @@
 		BF7EB28C261C3CC3003EB682 /* TodoListUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7EB28B261C3CC3003EB682 /* TodoListUITests.swift */; };
 		BF7EB2A0261C418B003EB682 /* Notification+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7EB29F261C418B003EB682 /* Notification+Extension.swift */; };
 		BFA75568261FE696008FB904 /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFA75567261FE696008FB904 /* HTTPMethod.swift */; };
-		BFA7556D261FEBE2008FB904 /* AddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFA7556C261FEBE2008FB904 /* AddViewController.swift */; };
+		BFA7556D261FEBE2008FB904 /* AddTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFA7556C261FEBE2008FB904 /* AddTaskViewController.swift */; };
 		BFBF30E4261D4E65000BDDE3 /* DoingDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFBF30E3261D4E65000BDDE3 /* DoingDataSource.swift */; };
 		D09A57E82625380A00DA620A /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D09A57E72625380A00DA620A /* MainViewController.swift */; };
 		D09A57F226253ADB00DA620A /* TaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D09A57F126253ADB00DA620A /* TaskViewController.swift */; };
@@ -75,7 +75,7 @@
 		BF7EB28D261C3CC3003EB682 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BF7EB29F261C418B003EB682 /* Notification+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification+Extension.swift"; sourceTree = "<group>"; };
 		BFA75567261FE696008FB904 /* HTTPMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPMethod.swift; sourceTree = "<group>"; };
-		BFA7556C261FEBE2008FB904 /* AddViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddViewController.swift; sourceTree = "<group>"; };
+		BFA7556C261FEBE2008FB904 /* AddTaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTaskViewController.swift; sourceTree = "<group>"; };
 		BFBF30E3261D4E65000BDDE3 /* DoingDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoingDataSource.swift; sourceTree = "<group>"; };
 		D09A57E72625380A00DA620A /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		D09A57F126253ADB00DA620A /* TaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskViewController.swift; sourceTree = "<group>"; };
@@ -202,7 +202,7 @@
 			children = (
 				D09A57F126253ADB00DA620A /* TaskViewController.swift */,
 				D09A57E72625380A00DA620A /* MainViewController.swift */,
-				BFA7556C261FEBE2008FB904 /* AddViewController.swift */,
+				BFA7556C261FEBE2008FB904 /* AddTaskViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -396,7 +396,7 @@
 				D09A57E82625380A00DA620A /* MainViewController.swift in Sources */,
 				D0F41D662622D04C0024D7B1 /* DoDTO.swift in Sources */,
 				D0F41D12261E9FE70024D7B1 /* URLSessionManager.swift in Sources */,
-				BFA7556D261FEBE2008FB904 /* AddViewController.swift in Sources */,
+				BFA7556D261FEBE2008FB904 /* AddTaskViewController.swift in Sources */,
 				D0E6A9D72624128B00E9B023 /* ActivityTableViewCell.swift in Sources */,
 				D0F41D612622C99F0024D7B1 /* DoingDTO.swift in Sources */,
 				BFBF30E4261D4E65000BDDE3 /* DoingDataSource.swift in Sources */,

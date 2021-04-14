@@ -12,16 +12,16 @@ enum CardStatus {
     case update
 }
 
-class AddViewController: UIViewController {
+class AddTaskViewController: UIViewController {
     @IBOutlet weak var cardTitle: UILabel!
     @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var contentTextField: UITextField!
     @IBOutlet weak var positiveButton: CardButton!
     @IBOutlet weak var popUp: UIView!
     
-    var status: CardStatus?
-    var titleName: String?
-    var contents: String?
+    private var status: CardStatus?
+    private var titleName: String?
+    private var contents: String?
     private var isKeyboardActive: Bool = false
     
     override func viewDidLoad() {
@@ -35,6 +35,12 @@ class AddViewController: UIViewController {
         
         NotificationCenter.default.addObserver(self, selector: #selector(adjustPopUp), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(adjustPopUpDown), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    func configure(status : CardStatus, titleName: String, contents: String) {
+        self.status = status
+        self.titleName = titleName
+        self.contents = contents
     }
     
     @objc func adjustPopUp(noti: Notification) {

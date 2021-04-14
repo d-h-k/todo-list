@@ -84,7 +84,7 @@ class MainViewController: UIViewController {
 
     // MARK: - IBActions
     @IBAction func touchUpAdd(_ sender: Any) {
-        guard let vc = storyboard?.instantiateViewController(withIdentifier: "Add") as? AddViewController else {
+        guard let vc = storyboard?.instantiateViewController(withIdentifier: "Add") as? AddTaskViewController else {
             return
         }
         vc.status = .add
