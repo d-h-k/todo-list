@@ -15,8 +15,8 @@ class UseCase {
             case .success(let data):
                 let tasks = Decoder.decode(task: data)
                 completion(tasks ?? [])
-            case .failure(let error):
-                print(error.localizedDescription)
+            case .failure(_):
+                return
             }
         }
     }
@@ -27,8 +27,8 @@ class UseCase {
             case .success(let data):
                 let tasks = Decoder.decode(task: data)
                 completion(tasks ?? [])
-            case .failure(let error):
-                print(error.localizedDescription)
+            case .failure(_):
+                return
             }
         }
     }
@@ -39,8 +39,8 @@ class UseCase {
             case .success(let data):
                 let tasks = Decoder.decode(task: data)
                 completion(tasks ?? [])
-            case .failure(let error):
-                print(error.localizedDescription)
+            case .failure(_):
+                return
             }
         }
     }
@@ -51,8 +51,8 @@ class UseCase {
             case .success(let data):
                 let tasks = Decoder.decode(task: data)
                 completion(tasks ?? [])
-            case .failure(let error):
-                print(error.localizedDescription)
+            case .failure(_):
+                return
             }
         }
     }
@@ -65,8 +65,8 @@ class UseCase {
                     return
                 }
                 completion(task)
-            case .failure(let error):
-                print(error)
+            case .failure(_):
+                return
             }
         }
     }

@@ -37,10 +37,8 @@ struct URLSessionManager {
             }
             guard let response = res as? HTTPURLResponse,
                   response.statusCode == 200 else {
-                print("no response")
                 return
             }
-            print(response.statusCode)
             completion(.success(data))
         }).resume()
     }

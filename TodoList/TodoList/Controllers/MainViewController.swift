@@ -78,7 +78,6 @@ class MainViewController: UIViewController {
             vc.dragDelegate = doneDragDelegate
             vc.dropDelegate = doneDropDelegate
         default:
-            print("break")
             break
         }
     }
