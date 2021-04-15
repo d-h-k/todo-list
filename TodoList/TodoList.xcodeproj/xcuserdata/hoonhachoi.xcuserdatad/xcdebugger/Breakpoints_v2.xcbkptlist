@@ -3,4 +3,114 @@
    uuid = "94B084F0-DFE5-4E3F-A56C-2B75376F3BC0"
    type = "1"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "16EFA3F2-5B32-43F6-8FB8-324C8A61CE3F"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TodoList/Controllers/TaskViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "18"
+            endingLineNumber = "18"
+            landmarkName = "TaskViewController"
+            landmarkType = "3">
+            <Locations>
+               <Location
+                  uuid = "16EFA3F2-5B32-43F6-8FB8-324C8A61CE3F - a20eb71b86bf92db"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "TodoList.TaskViewController.(taskDTO in _2796F195FB1B42F3E05E84E6248A4F9B).getter : TodoList.TodoTaskDTO"
+                  moduleName = "TodoList"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/hoonhachoi/Documents/swift/todo-list/TodoList/TodoList/Controllers/TaskViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "18"
+                  endingLineNumber = "18"
+                  offsetFromSymbolStart = "122">
+               </Location>
+               <Location
+                  uuid = "16EFA3F2-5B32-43F6-8FB8-324C8A61CE3F - 3c75614e21a4cecf"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "TodoList.TaskViewController.(taskDTO in _2796F195FB1B42F3E05E84E6248A4F9B).setter : TodoList.TodoTaskDTO"
+                  moduleName = "TodoList"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/hoonhachoi/Documents/swift/todo-list/TodoList/TodoList/Controllers/TaskViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "18"
+                  endingLineNumber = "18"
+                  offsetFromSymbolStart = "148">
+               </Location>
+               <Location
+                  uuid = "16EFA3F2-5B32-43F6-8FB8-324C8A61CE3F - 68a9cdcb3bd4292a"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "TodoList.TaskViewController.(taskDTO in _2796F195FB1B42F3E05E84E6248A4F9B).modify : TodoList.TodoTaskDTO"
+                  moduleName = "TodoList"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/hoonhachoi/Documents/swift/todo-list/TodoList/TodoList/Controllers/TaskViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "18">
+               </Location>
+               <Location
+                  uuid = "16EFA3F2-5B32-43F6-8FB8-324C8A61CE3F - f981c844cc6eb6fa"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "TodoList.TaskViewController.(taskDTO in _2796F195FB1B42F3E05E84E6248A4F9B).modify : TodoList.TodoTaskDTO with unmangled suffix &quot;.resume.0&quot;"
+                  moduleName = "TodoList"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/hoonhachoi/Documents/swift/todo-list/TodoList/TodoList/Controllers/TaskViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "18"
+                  endingLineNumber = "18"
+                  offsetFromSymbolStart = "4">
+               </Location>
+               <Location
+                  uuid = "16EFA3F2-5B32-43F6-8FB8-324C8A61CE3F - 92502552e4db66"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "TodoList.TaskViewController.init(nibName: Swift.Optional&lt;Swift.String&gt;, bundle: Swift.Optional&lt;__C.NSBundle&gt;) -&gt; TodoList.TaskViewController"
+                  moduleName = "TodoList"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/hoonhachoi/Documents/swift/todo-list/TodoList/TodoList/Controllers/TaskViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "18"
+                  endingLineNumber = "18"
+                  offsetFromSymbolStart = "806">
+               </Location>
+               <Location
+                  uuid = "16EFA3F2-5B32-43F6-8FB8-324C8A61CE3F - d4000c04e309f178"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "TodoList.TaskViewController.init(coder: __C.NSCoder) -&gt; Swift.Optional&lt;TodoList.TaskViewController&gt;"
+                  moduleName = "TodoList"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/hoonhachoi/Documents/swift/todo-list/TodoList/TodoList/Controllers/TaskViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "18"
+                  endingLineNumber = "18"
+                  offsetFromSymbolStart = "741">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>

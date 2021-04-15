@@ -38,12 +38,12 @@ class DoingDelegate: NSObject, UITableViewDelegate {
     func tableView(_ tableView: UITableView, contextMenuConfigurationForRowAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
         return UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { suggestedActions in
             
-            let share = UIAction(title: "완료한 일로 이동") { action in
+            let share = UIAction(title: Text.moveComplete) { action in
                 let task = DoDTO.shared.move(index: indexPath.section)
                 NotificationCenter.default.post(name: .taskCompleted, object: self, userInfo: ["task": task])
             }
             
-            let rename = UIAction(title: "수정하기") { [weak self] action in
+            let rename = UIAction(title: Text.update) { [weak self] action in
                 //
                 guard let handler = self?.handler else { return }
                 guard let cell = tableView.cellForRow(at: indexPath) as? TaskTableViewCell else { return }
@@ -51,7 +51,7 @@ class DoingDelegate: NSObject, UITableViewDelegate {
                 self?.updateTask(title: title, contents: contents, completion: handler)
             }
             
-            let delete = UIAction(title: "삭제하기", attributes: .destructive) { action in
+            let delete = UIAction(title: Text.delete, attributes: .destructive) { action in
                 // Perform delete API
                 DoingDTO.shared.delete(index: indexPath.section)
                 tableView.deleteSections(IndexSet(indexPath.section...indexPath.section), with: .fade)
