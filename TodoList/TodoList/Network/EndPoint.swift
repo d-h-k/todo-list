@@ -10,7 +10,6 @@ import Foundation
 enum EndPoint {
     private static let scheme = "http"
     private static let host = "13.209.4.14"
-    private static let postHost = "team10todo.herokuapp.com"
     
     static func url(with path: Path) -> URL? {
         var components = URLComponents()
@@ -24,7 +23,8 @@ enum EndPoint {
     static func postUrl(with path: Path) -> URL? {
         var components = URLComponents()
         components.scheme = EndPoint.scheme
-        components.host = EndPoint.postHost
+        components.port = 8080
+        components.host = EndPoint.host
         components.path = path.rawValue
         return components.url
     }

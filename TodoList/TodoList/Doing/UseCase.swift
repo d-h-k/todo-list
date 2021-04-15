@@ -57,7 +57,7 @@ class UseCase {
         }
     }
     
-    func postTask(body : Data, completion : @escaping (Task) -> Void) {
+    func postTask(body : Data, completion : @escaping (Bool) -> Void) {
         URLSessionManager().requestPost(with: .lists, method: .post, body: body) { result in
             switch result {
             case .success(let data):

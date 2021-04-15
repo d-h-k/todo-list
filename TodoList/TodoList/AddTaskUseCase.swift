@@ -16,11 +16,12 @@ class AddTaskUseCase {
         return Task(title: title, contents: content, category: TaskState.todo).encode()
     }
     
-    func postTask(title : String?, content : String?) {
+    func postTask(title : String?, content : String?, completion : @escaping (Bool) -> Void) {
         guard let data = self.encode(title: title, content: content) else {
             return
         }
         UseCase().postTask(body: data) { (result) in
+            completion(result)
         }
     }
 

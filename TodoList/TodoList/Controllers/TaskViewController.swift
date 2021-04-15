@@ -36,9 +36,7 @@ class TaskViewController: UIViewController {
     }
     
     @objc func reload() {
-        DispatchQueue.main.async {
-            self.taskTableView.reloadData()
-        }
+        setupUseCase()
     }
     
     func setupUseCase() {

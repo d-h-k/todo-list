@@ -75,7 +75,12 @@ class AddTaskViewController: UIViewController {
     }
     
     @IBAction func registerButtonTouched(_ sender: UIButton) {
-        addTaskUseCase.postTask(title: titleTextField.text, content: contentTextField.text)
+        addTaskUseCase.postTask(title: titleTextField.text, content: contentTextField.text) { _ in
+            NotificationCenter.default.post(name: .taskDropped, object: self)
+            DispatchQueue.main.async {
+                self.dismiss(animated : true)
+            }
+        }
     }
     
     @IBAction func closeButtonTouched(_ sender: UIButton) {
