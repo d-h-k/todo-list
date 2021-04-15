@@ -157,6 +157,7 @@
 				BF7EB29F261C418B003EB682 /* Notification+Extension.swift */,
 				D09A58342625748800DA620A /* DragDelegate.swift */,
 				D09A584B2625783100DA620A /* DropDelegate.swift */,
+				BF4DEED3262722E700FE5207 /* AddTaskUseCase.swift */,
 				D09A5828262573C300DA620A /* Controllers */,
 				D09A5830262573EC00DA620A /* Views */,
 				D09A582C262573D800DA620A /* Apps */,
@@ -205,7 +206,6 @@
 				D09A57F126253ADB00DA620A /* TaskViewController.swift */,
 				D09A57E72625380A00DA620A /* MainViewController.swift */,
 				BFA7556C261FEBE2008FB904 /* AddTaskViewController.swift */,
-				BF4DEED3262722E700FE5207 /* AddTaskUseCase.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
