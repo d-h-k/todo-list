@@ -12,6 +12,8 @@ class MainViewController: UIViewController {
     @IBOutlet weak var activityTrailingConstraint: NSLayoutConstraint!
     @IBOutlet weak var activityTableView: UITableView!
     
+    @IBOutlet var addButtons: [UIButton]!
+    
     private let activityWidth : CGFloat = 428
     
     private let doDataSource = DoDataSource()
@@ -30,6 +32,8 @@ class MainViewController: UIViewController {
     private let doneDropDelegate = DoneDropDelegate()
     
     private let activityDataSource = ActivityTableViewDataSource()
+    private var addButton : Mapping!
+
     
     lazy var closure : ((TaskObject) -> Void) = { object in
         guard let storyBoard = self.storyboard else {
@@ -45,10 +49,12 @@ class MainViewController: UIViewController {
         super.viewDidLoad()
         activityTrailingConstraint.constant -= activityWidth
         setDelegateHandler()
-        
+
         activityTableView.register(UINib(nibName: "ActivityViewCell", bundle: nil), forCellReuseIdentifier: ActivityViewCell.identifier)
         activityTableView.dataSource = activityDataSource
         NotificationCenter.default.addObserver(self, selector: #selector(activityTableViewReload), name: .activityAdded, object: nil)
+
+        addButton = Mapping(buttons: addButtons)
     }
 
     @objc func activityTableViewReload() {
@@ -87,11 +93,14 @@ class MainViewController: UIViewController {
     }
 
     // MARK: - IBActions
-    @IBAction func touchUpAdd(_ sender: Any) {
+    @IBAction func touchUpAdd(_ sender: UIButton) {
+        guard let category = addButton[sender] else {
+            return
+        }
         guard let vc = storyboard?.instantiateViewController(withIdentifier: "Add") as? AddTaskViewController else {
             return
         }
-        vc.update(status : .add)
+        vc.update(status : .add, category : category)
         vc.modalPresentationStyle = .overFullScreen
         present(vc, animated: true, completion: nil)
     }

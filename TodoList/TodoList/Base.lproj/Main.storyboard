@@ -228,6 +228,9 @@
                         <outlet property="activityTableView" destination="Hn5-Mp-2XI" id="OHW-8w-gCt"/>
                         <outlet property="activityTrailingConstraint" destination="fk6-DZ-wvN" id="wTK-An-7dA"/>
                         <outlet property="activityView" destination="458-Ae-2pD" id="gxu-J2-UNL"/>
+                        <outletCollection property="addButtons" destination="UKa-eB-sJb" collectionClass="NSMutableArray" id="TsP-N4-fmT"/>
+                        <outletCollection property="addButtons" destination="ynA-DP-nO2" collectionClass="NSMutableArray" id="UYq-hH-sMS"/>
+                        <outletCollection property="addButtons" destination="bUH-cl-VCs" collectionClass="NSMutableArray" id="7sN-iN-SED"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

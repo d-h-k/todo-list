@@ -31,7 +31,6 @@ class TaskViewController: UIViewController {
         taskTableView.dropDelegate = dropDelegate
         setupUseCase()
         
-        //
         NotificationCenter.default.addObserver(self, selector: #selector(reload), name: .taskDropped, object: nil)
     }
     

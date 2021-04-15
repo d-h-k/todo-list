@@ -47,8 +47,9 @@ class AddTaskViewController: UIViewController {
         status == .update ? setUpdateUI() : ()
     }
     
-    func update(status : CardStatus){
+    func update(status : CardStatus, category : TaskState){
         self.status = status
+        self.taskCategory = category
     }
     
     @objc func adjustPopUp(noti: Notification) {
@@ -91,7 +92,10 @@ class AddTaskViewController: UIViewController {
     }
     
     func postTask() {
-        addTaskUseCase.postTask(title: titleTextField.text, content: contentTextField.text) { _ in
+        guard let category = taskCategory else {
+            return
+        }
+        addTaskUseCase.postTask(title: titleTextField.text, content: contentTextField.text, category : category) { _ in
             self.requestComplete()
         }
     }

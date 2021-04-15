@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		BF4DEED4262722E700FE5207 /* AddTaskUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF4DEED3262722E700FE5207 /* AddTaskUseCase.swift */; };
 		BF4DEF14262802C000FE5207 /* StaticText.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF4DEF13262802C000FE5207 /* StaticText.swift */; };
+		BF4DEF2626282EE100FE5207 /* Mapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF4DEF2526282EE100FE5207 /* Mapping.swift */; };
 		BF7EB26A261C3CBF003EB682 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7EB269261C3CBF003EB682 /* AppDelegate.swift */; };
 		BF7EB26C261C3CBF003EB682 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7EB26B261C3CBF003EB682 /* SceneDelegate.swift */; };
 		BF7EB271261C3CBF003EB682 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BF7EB26F261C3CBF003EB682 /* Main.storyboard */; };
@@ -21,7 +22,6 @@
 		BFA7556D261FEBE2008FB904 /* AddTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFA7556C261FEBE2008FB904 /* AddTaskViewController.swift */; };
 		BFBF30E4261D4E65000BDDE3 /* DoingDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFBF30E3261D4E65000BDDE3 /* DoingDataSource.swift */; };
 		D08AA3562628219D00E43F0B /* ActivityDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = D08AA3552628219D00E43F0B /* ActivityDataSource.swift */; };
-		D08AA35E262823B700E43F0B /* ActivityDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D08AA35D262823B700E43F0B /* ActivityDelegate.swift */; };
 		D08AA3672628284400E43F0B /* ActivityViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D08AA3652628284400E43F0B /* ActivityViewCell.swift */; };
 		D08AA3682628284400E43F0B /* ActivityViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D08AA3662628284400E43F0B /* ActivityViewCell.xib */; };
 		D08AA37026282D6700E43F0B /* ActivityDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = D08AA36F26282D6700E43F0B /* ActivityDTO.swift */; };
@@ -69,6 +69,7 @@
 /* Begin PBXFileReference section */
 		BF4DEED3262722E700FE5207 /* AddTaskUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTaskUseCase.swift; sourceTree = "<group>"; };
 		BF4DEF13262802C000FE5207 /* StaticText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StaticText.swift; sourceTree = "<group>"; };
+		BF4DEF2526282EE100FE5207 /* Mapping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mapping.swift; sourceTree = "<group>"; };
 		BF7EB266261C3CBF003EB682 /* TodoList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TodoList.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BF7EB269261C3CBF003EB682 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BF7EB26B261C3CBF003EB682 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -87,7 +88,6 @@
 		BFA7556C261FEBE2008FB904 /* AddTaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTaskViewController.swift; sourceTree = "<group>"; };
 		BFBF30E3261D4E65000BDDE3 /* DoingDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoingDataSource.swift; sourceTree = "<group>"; };
 		D08AA3552628219D00E43F0B /* ActivityDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityDataSource.swift; sourceTree = "<group>"; };
-		D08AA35D262823B700E43F0B /* ActivityDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityDelegate.swift; sourceTree = "<group>"; };
 		D08AA3652628284400E43F0B /* ActivityViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityViewCell.swift; sourceTree = "<group>"; };
 		D08AA3662628284400E43F0B /* ActivityViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ActivityViewCell.xib; sourceTree = "<group>"; };
 		D08AA36F26282D6700E43F0B /* ActivityDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityDTO.swift; sourceTree = "<group>"; };
@@ -181,10 +181,10 @@
 				D09A58342625748800DA620A /* DragDelegate.swift */,
 				D09A584B2625783100DA620A /* DropDelegate.swift */,
 				BF4DEF13262802C000FE5207 /* StaticText.swift */,
+				BF4DEF2526282EE100FE5207 /* Mapping.swift */,
 				BF4DEF2126282D5A00FE5207 /* UseCase */,
 				D08AA3552628219D00E43F0B /* ActivityDataSource.swift */,
 				D08AA36F26282D6700E43F0B /* ActivityDTO.swift */,
-				D08AA35D262823B700E43F0B /* ActivityDelegate.swift */,
 				D09A5828262573C300DA620A /* Controllers */,
 				D09A5830262573EC00DA620A /* Views */,
 				D09A582C262573D800DA620A /* Apps */,
@@ -431,6 +431,7 @@
 				D0E6A9D72624128B00E9B023 /* ActivityTableViewCell.swift in Sources */,
 				D0F41D612622C99F0024D7B1 /* DoingDTO.swift in Sources */,
 				BFBF30E4261D4E65000BDDE3 /* DoingDataSource.swift in Sources */,
+				BF4DEF2626282EE100FE5207 /* Mapping.swift in Sources */,
 				D09A57F226253ADB00DA620A /* TaskViewController.swift in Sources */,
 				D0F41D6E2622E6450024D7B1 /* DoneDTO.swift in Sources */,
 				D09A584C2625783100DA620A /* DropDelegate.swift in Sources */,
@@ -445,7 +446,6 @@
 				D09A581E26256A7F00DA620A /* DoneDelegate.swift in Sources */,
 				D09A58352625748800DA620A /* DragDelegate.swift in Sources */,
 				BFA75568261FE696008FB904 /* HTTPMethod.swift in Sources */,
-				D08AA35E262823B700E43F0B /* ActivityDelegate.swift in Sources */,
 				BF7EB26A261C3CBF003EB682 /* AppDelegate.swift in Sources */,
 				D08AA37026282D6700E43F0B /* ActivityDTO.swift in Sources */,
 				BF4DEED4262722E700FE5207 /* AddTaskUseCase.swift in Sources */,

@@ -9,8 +9,8 @@ import Foundation
 
 class AddTaskUseCase {
     
-    func postTask(title : String?, content : String?, completion : @escaping (Bool) -> Void) {
-        guard let data = self.encode(title: title, content: content) else {
+    func postTask(title : String?, content : String?, category: TaskState, completion : @escaping (Bool) -> Void) {
+        guard let data = self.encode(title: title, content: content, category : category) else {
             return
         }
         UseCase().addTask(body: data) { (result) in
@@ -27,11 +27,11 @@ class AddTaskUseCase {
         }
     }
     
-    private func encode(title : String?, content : String?) -> Data? {
+    private func encode(title : String?, content : String?, category : TaskState) -> Data? {
         guard let title = title, let content = content else {
             return nil
         }
-        return Task(title: title, contents: content, category: TaskState.todo).encode()
+        return Task(title: title, contents: content, category: category).encode()
     }
     
     private func updateEncode(title : String?, content : String?, cetagory : TaskState) -> Data? {
