@@ -10,6 +10,7 @@ import UIKit
 class MainViewController: UIViewController {
     @IBOutlet weak var activityView: UIView!
     @IBOutlet weak var activityTrailingConstraint: NSLayoutConstraint!
+    @IBOutlet weak var activityTableView: UITableView!
     
     private let activityWidth : CGFloat = 428
     
@@ -28,6 +29,8 @@ class MainViewController: UIViewController {
     private let doneDragDelegate = DoneDragDelegate()
     private let doneDropDelegate = DoneDropDelegate()
     
+    private let activityDataSource = ActivityTableViewDataSource()
+    
     lazy var closure : ((TaskObject) -> Void) = { object in
         guard let storyBoard = self.storyboard else {
             return
@@ -42,8 +45,18 @@ class MainViewController: UIViewController {
         super.viewDidLoad()
         activityTrailingConstraint.constant -= activityWidth
         setDelegateHandler()
+        
+        activityTableView.register(UINib(nibName: "ActivityViewCell", bundle: nil), forCellReuseIdentifier: ActivityViewCell.identifier)
+        activityTableView.dataSource = activityDataSource
+        NotificationCenter.default.addObserver(self, selector: #selector(activityTableViewReload), name: .activityAdded, object: nil)
     }
 
+    @objc func activityTableViewReload() {
+        DispatchQueue.main.async {
+            self.activityTableView.reloadData()
+        }
+    }
+    
     func setDelegateHandler() {
         doDelegate.handler = closure
         doingDelegate.handler = closure

@@ -20,6 +20,11 @@
 		BFA75568261FE696008FB904 /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFA75567261FE696008FB904 /* HTTPMethod.swift */; };
 		BFA7556D261FEBE2008FB904 /* AddTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFA7556C261FEBE2008FB904 /* AddTaskViewController.swift */; };
 		BFBF30E4261D4E65000BDDE3 /* DoingDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFBF30E3261D4E65000BDDE3 /* DoingDataSource.swift */; };
+		D08AA3562628219D00E43F0B /* ActivityDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = D08AA3552628219D00E43F0B /* ActivityDataSource.swift */; };
+		D08AA35E262823B700E43F0B /* ActivityDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D08AA35D262823B700E43F0B /* ActivityDelegate.swift */; };
+		D08AA3672628284400E43F0B /* ActivityViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D08AA3652628284400E43F0B /* ActivityViewCell.swift */; };
+		D08AA3682628284400E43F0B /* ActivityViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D08AA3662628284400E43F0B /* ActivityViewCell.xib */; };
+		D08AA37026282D6700E43F0B /* ActivityDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = D08AA36F26282D6700E43F0B /* ActivityDTO.swift */; };
 		D09A57E82625380A00DA620A /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D09A57E72625380A00DA620A /* MainViewController.swift */; };
 		D09A57F226253ADB00DA620A /* TaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D09A57F126253ADB00DA620A /* TaskViewController.swift */; };
 		D09A580C26254AF500DA620A /* TodoTaskDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = D09A580B26254AF500DA620A /* TodoTaskDTO.swift */; };
@@ -81,6 +86,11 @@
 		BFA75567261FE696008FB904 /* HTTPMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPMethod.swift; sourceTree = "<group>"; };
 		BFA7556C261FEBE2008FB904 /* AddTaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTaskViewController.swift; sourceTree = "<group>"; };
 		BFBF30E3261D4E65000BDDE3 /* DoingDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoingDataSource.swift; sourceTree = "<group>"; };
+		D08AA3552628219D00E43F0B /* ActivityDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityDataSource.swift; sourceTree = "<group>"; };
+		D08AA35D262823B700E43F0B /* ActivityDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityDelegate.swift; sourceTree = "<group>"; };
+		D08AA3652628284400E43F0B /* ActivityViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityViewCell.swift; sourceTree = "<group>"; };
+		D08AA3662628284400E43F0B /* ActivityViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ActivityViewCell.xib; sourceTree = "<group>"; };
+		D08AA36F26282D6700E43F0B /* ActivityDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityDTO.swift; sourceTree = "<group>"; };
 		D09A57E72625380A00DA620A /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		D09A57F126253ADB00DA620A /* TaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskViewController.swift; sourceTree = "<group>"; };
 		D09A580B26254AF500DA620A /* TodoTaskDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoTaskDTO.swift; sourceTree = "<group>"; };
@@ -162,6 +172,8 @@
 		BF7EB268261C3CBF003EB682 /* TodoList */ = {
 			isa = PBXGroup;
 			children = (
+				D08AA3652628284400E43F0B /* ActivityViewCell.swift */,
+				D08AA3662628284400E43F0B /* ActivityViewCell.xib */,
 				BF7EB26F261C3CBF003EB682 /* Main.storyboard */,
 				D09A580B26254AF500DA620A /* TodoTaskDTO.swift */,
 				D0E6A9EB26243AC600E9B023 /* Router.swift */,
@@ -170,6 +182,9 @@
 				D09A584B2625783100DA620A /* DropDelegate.swift */,
 				BF4DEF13262802C000FE5207 /* StaticText.swift */,
 				BF4DEF2126282D5A00FE5207 /* UseCase */,
+				D08AA3552628219D00E43F0B /* ActivityDataSource.swift */,
+				D08AA36F26282D6700E43F0B /* ActivityDTO.swift */,
+				D08AA35D262823B700E43F0B /* ActivityDelegate.swift */,
 				D09A5828262573C300DA620A /* Controllers */,
 				D09A5830262573EC00DA620A /* Views */,
 				D09A582C262573D800DA620A /* Apps */,
@@ -377,6 +392,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BF7EB276261C3CC3003EB682 /* LaunchScreen.storyboard in Resources */,
+				D08AA3682628284400E43F0B /* ActivityViewCell.xib in Resources */,
 				BF7EB273261C3CC3003EB682 /* Assets.xcassets in Resources */,
 				BF7EB271261C3CBF003EB682 /* Main.storyboard in Resources */,
 			);
@@ -421,6 +437,7 @@
 				D0F41D4B261EEC360024D7B1 /* TaskTableViewCell.swift in Sources */,
 				D0F41D35261ED86E0024D7B1 /* UseCase.swift in Sources */,
 				D09A5811262561CC00DA620A /* DoDelegate.swift in Sources */,
+				D08AA3672628284400E43F0B /* ActivityViewCell.swift in Sources */,
 				D09A580C26254AF500DA620A /* TodoTaskDTO.swift in Sources */,
 				D09A581926256A5800DA620A /* DoingDelegate.swift in Sources */,
 				D0F41D41261EEAFC0024D7B1 /* DoDataSource.swift in Sources */,
@@ -428,11 +445,14 @@
 				D09A581E26256A7F00DA620A /* DoneDelegate.swift in Sources */,
 				D09A58352625748800DA620A /* DragDelegate.swift in Sources */,
 				BFA75568261FE696008FB904 /* HTTPMethod.swift in Sources */,
+				D08AA35E262823B700E43F0B /* ActivityDelegate.swift in Sources */,
 				BF7EB26A261C3CBF003EB682 /* AppDelegate.swift in Sources */,
+				D08AA37026282D6700E43F0B /* ActivityDTO.swift in Sources */,
 				BF4DEED4262722E700FE5207 /* AddTaskUseCase.swift in Sources */,
 				D0E6A9DF262414B600E9B023 /* CardButton.swift in Sources */,
 				BF7EB26C261C3CBF003EB682 /* SceneDelegate.swift in Sources */,
 				BF7EB2A0261C418B003EB682 /* Notification+Extension.swift in Sources */,
+				D08AA3562628219D00E43F0B /* ActivityDataSource.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
