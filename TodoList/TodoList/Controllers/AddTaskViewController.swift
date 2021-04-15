@@ -23,7 +23,8 @@ class AddTaskViewController: UIViewController {
     private var titleName: String?
     private var contents: String?
     private var isKeyboardActive: Bool = false
-    
+    private var taskId : Int?
+    private var taskCategory : TaskState?
     private let addTaskUseCase = AddTaskUseCase()
     
     override func viewDidLoad() {
@@ -34,10 +35,12 @@ class AddTaskViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(adjustPopUpDown), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
-    func configure(status : CardStatus, titleName: String, contents: String) {
+    func configure(status : CardStatus, object : TaskObject) {
         self.status = status
-        self.titleName = titleName
-        self.contents = contents
+        self.titleName = object.title
+        self.contents = object.content
+        self.taskId = object.id
+        self.taskCategory = object.category
     }
     
     func updateUI() {
@@ -74,13 +77,28 @@ class AddTaskViewController: UIViewController {
         contentTextField.text = contents
     }
     
-    @IBAction func registerButtonTouched(_ sender: UIButton) {
+    func action() {
+        status == .update ? () : postTask()
+    }
+    
+    func updateTask() {
+        guard let taskId = taskId, let category = taskCategory else {
+            return
+        }
+        addTaskUseCase.update(title: titleTextField.text, content: contentTextField.text, category: category, taskId: taskId)
+    }
+    
+    func postTask() {
         addTaskUseCase.postTask(title: titleTextField.text, content: contentTextField.text) { _ in
             NotificationCenter.default.post(name: .taskDropped, object: self)
             DispatchQueue.main.async {
                 self.dismiss(animated : true)
             }
         }
+    }
+    
+    @IBAction func registerButtonTouched(_ sender: UIButton) {
+        action()
     }
     
     @IBAction func closeButtonTouched(_ sender: UIButton) {

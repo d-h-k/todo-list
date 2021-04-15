@@ -7,15 +7,24 @@
 
 import UIKit
 
+struct TaskObject {
+    let title : String
+    let content : String
+    let category : TaskState
+    let id : Int
+    
+}
+
+
 class DoDelegate: NSObject, UITableViewDelegate {
-    var handler: ((String, String) -> Void)?
+    var handler: ((TaskObject) -> Void)?
     
     override init() {
         self.handler = nil
     }
     
-    func updateTask(title: String, contents: String, completion: @escaping (String, String) -> Void) {
-        completion(title, contents)
+    func updateTask(title: String, contents: String, category : TaskState, id : Int, completion: @escaping (TaskObject) -> Void) {
+        completion(TaskObject(title: title, content: contents, category: category, id: id))
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -29,10 +38,15 @@ class DoDelegate: NSObject, UITableViewDelegate {
         return headerView
     }
     
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let action = UIContextualAction(style: .destructive, title: nil) { (action, view, completion) in
+            tableView.deleteRows(at: [indexPath], with: .automatic)
+            completion(true)
         }
+        action.image = UIImage(systemName: "trash")
+        let configuration = UISwipeActionsConfiguration(actions: [action])
+        configuration.performsFirstActionWithFullSwipe = false
+        return configuration
     }
     
     func tableView(_ tableView: UITableView, contextMenuConfigurationForRowAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
@@ -44,15 +58,13 @@ class DoDelegate: NSObject, UITableViewDelegate {
             }
             
             let rename = UIAction(title: Text.update) { [weak self] action in
-                //
                 guard let handler = self?.handler else { return }
                 guard let cell = tableView.cellForRow(at: indexPath) as? TaskTableViewCell else { return }
                 guard let title = cell.title.text, let contents = cell.content.text else { return }
-                self?.updateTask(title: title, contents: contents, completion: handler)
+                self?.updateTask(title: title, contents: contents,category: cell.category, id : cell.id, completion: handler)
             }
             
             let delete = UIAction(title: Text.delete, attributes: .destructive) { action in
-                // Perform delete API
                 DoDTO.shared.delete(index: indexPath.section)
                 tableView.deleteSections(IndexSet(indexPath.section...indexPath.section), with: .fade)
                 tableView.reloadData()

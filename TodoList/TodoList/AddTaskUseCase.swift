@@ -16,13 +16,26 @@ class AddTaskUseCase {
         return Task(title: title, contents: content, category: TaskState.todo).encode()
     }
     
+    func updateEncode(title : String?, content : String?, cetagory : TaskState) -> Data? {
+        guard let title = title, let content = content else {
+            return nil
+        }
+        return Task(title: title, contents: content, category: cetagory).encode()
+    }
+    
     func postTask(title : String?, content : String?, completion : @escaping (Bool) -> Void) {
         guard let data = self.encode(title: title, content: content) else {
             return
         }
-        UseCase().postTask(body: data) { (result) in
+        UseCase().addTask(body: data) { (result) in
             completion(result)
         }
     }
-
+    
+    func update(title : String?, content : String?, category : TaskState, taskId: Int) {
+        guard let data = self.updateEncode(title: title , content: content, cetagory: category) else {
+            return
+        }
+        
+    }
 }

@@ -8,14 +8,14 @@
 import UIKit
 
 class DoneDelegate: NSObject, UITableViewDelegate {
-    var handler: ((String, String) -> Void)?
+    var handler: ((TaskObject) -> Void)?
     
     override init() {
         self.handler = nil
     }
     
-    func updateTask(title: String, contents: String, completion: @escaping (String, String) -> Void) {
-        completion(title, contents)
+    func updateTask(title: String, contents: String, category : TaskState, id : Int, completion: @escaping (TaskObject) -> Void) {
+        completion(TaskObject(title: title, content: contents, category: category, id: id))
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -48,7 +48,7 @@ class DoneDelegate: NSObject, UITableViewDelegate {
                 guard let handler = self?.handler else { return }
                 guard let cell = tableView.cellForRow(at: indexPath) as? TaskTableViewCell else { return }
                 guard let title = cell.title.text, let contents = cell.content.text else { return }
-                self?.updateTask(title: title, contents: contents, completion: handler)
+                self?.updateTask(title: title, contents: contents,category: cell.category, id : cell.id, completion: handler)
             }
             
             let delete = UIAction(title: Text.delete, attributes: .destructive) { action in

@@ -8,7 +8,7 @@
 import Foundation
 
 struct Task: Codable {
-    var id: Int?
+    var id: Int
     let title: String
     let contents: String
     var category: TaskState
@@ -16,7 +16,8 @@ struct Task: Codable {
     var order: Int?
     var isDeleted: Int? // var deleted: Bool?
     
-    init(title: String, contents: String, category: TaskState) {
+    init(id : Int = 0, title: String, contents: String, category: TaskState) {
+        self.id = id
         self.title = title
         self.contents = contents
         self.category = category

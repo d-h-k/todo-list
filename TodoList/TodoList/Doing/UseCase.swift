@@ -57,8 +57,22 @@ class UseCase {
         }
     }
     
-    func postTask(body : Data, completion : @escaping (Bool) -> Void) {
+    func addTask(body : Data, completion : @escaping (Bool) -> Void) {
         URLSessionManager().requestPost(with: .lists, method: .post, body: body) { result in
+            switch result {
+            case .success(let data):
+                guard let task = Decoder.decode(result: data) else {
+                    return
+                }
+                completion(task)
+            case .failure(_):
+                return
+            }
+        }
+    }
+    
+    func updateTask(body : Data, completion : @escaping (Bool) -> Void) {
+        URLSessionManager().requestPost(with: .lists, method: .put, body: body) { result in
             switch result {
             case .success(let data):
                 guard let task = Decoder.decode(result: data) else {

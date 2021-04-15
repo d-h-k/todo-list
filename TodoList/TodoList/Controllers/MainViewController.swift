@@ -28,11 +28,11 @@ class MainViewController: UIViewController {
     private let doneDragDelegate = DoneDragDelegate()
     private let doneDropDelegate = DoneDropDelegate()
     
-    lazy var closure : ((String,String) -> Void) = { title, contents in
+    lazy var closure : ((TaskObject) -> Void) = { object in
         guard let storyBoard = self.storyboard else {
             return
         }
-        guard let vc = Router.shared.route(storyBoard, title: title, contents: contents) else {
+        guard let vc = Router.shared.route(storyBoard, object: object) else {
             return
         }
         self.present(vc, animated: true, completion: nil)

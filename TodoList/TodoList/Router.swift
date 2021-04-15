@@ -10,11 +10,11 @@ import UIKit
 class Router {
     static var shared = Router()
     
-    func route(_ storyboard: UIStoryboard, title: String, contents: String) -> UIViewController? {
+    func route(_ storyboard: UIStoryboard, object : TaskObject) -> UIViewController? {
         guard let vc = storyboard.instantiateViewController(withIdentifier: "Add") as? AddTaskViewController else {
             return nil
         }
-        vc.configure(status: .update, titleName: title, contents: contents)
+        vc.configure(status: .update, object : object)
         vc.modalPresentationStyle = .overFullScreen
         return vc
     }
