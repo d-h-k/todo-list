@@ -78,22 +78,28 @@ class AddTaskViewController: UIViewController {
     }
     
     func action() {
-        status == .update ? () : postTask()
+        status == .update ? updateTask() : postTask()
     }
     
     func updateTask() {
         guard let taskId = taskId, let category = taskCategory else {
             return
         }
-        addTaskUseCase.update(title: titleTextField.text, content: contentTextField.text, category: category, taskId: taskId)
+        addTaskUseCase.update(title: titleTextField.text, content: contentTextField.text, category: category, taskId: taskId) {
+            self.requestComplete()
+        }
     }
     
     func postTask() {
         addTaskUseCase.postTask(title: titleTextField.text, content: contentTextField.text) { _ in
-            NotificationCenter.default.post(name: .taskDropped, object: self)
-            DispatchQueue.main.async {
-                self.dismiss(animated : true)
-            }
+            self.requestComplete()
+        }
+    }
+    
+    func requestComplete() {
+        NotificationCenter.default.post(name: .taskDropped, object: self)
+        DispatchQueue.main.async {
+            self.dismiss(animated : true)
         }
     }
     

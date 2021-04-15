@@ -27,7 +27,24 @@ struct URLSessionManager {
     }
     
     func requestPost(with url: Path, method : HTTPMethod, body : Data, completion: @escaping (Result<Data, Error>) -> Void) {
-        guard let urlRequest = makePostURLRequest(with: url, method: method, body: body) else {
+        guard let urlRequest = makeURLRequest(with: url, method: method, body: body) else {
+            return
+        }
+        
+        URLSession.shared.dataTask(with: urlRequest, completionHandler: { data, res, error in
+            guard let data = data, error == nil else {
+                return
+            }
+            guard let response = res as? HTTPURLResponse,
+                  response.statusCode == 200 else {
+                return
+            }
+            completion(.success(data))
+        }).resume()
+    }
+    
+    func requestUpdate(with url: Path, method : HTTPMethod, body : Data, id : Int, completion: @escaping (Result<Data, Error>) -> Void) {
+        guard let urlRequest = makeUpdateURLRequest(with: url, method: method, body: body, id : id) else {
             return
         }
         
@@ -54,8 +71,8 @@ struct URLSessionManager {
         return request
     }
     
-    private func makePostURLRequest(with path : Path, method : HTTPMethod, body : Data?) -> URLRequest? {
-        guard let url = EndPoint.postUrl(with: path) else { return nil }
+    private func makeUpdateURLRequest(with path : Path, method : HTTPMethod, body : Data?, id : Int) -> URLRequest? {
+        guard let url = EndPoint.updateUrl(with: path, id : id) else { return nil }
         var request = URLRequest(url: url)
         request.httpMethod = method.rawValue
         request.httpBody = body

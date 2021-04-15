@@ -32,9 +32,13 @@ class AddTaskUseCase {
         }
     }
     
-    func update(title : String?, content : String?, category : TaskState, taskId: Int) {
+    func update(title : String?, content : String?, category : TaskState, taskId: Int, completion : @escaping () -> Void) {
         guard let data = self.updateEncode(title: title , content: content, cetagory: category) else {
             return
+        }
+        UseCase().updateTask(body: data, id: taskId) { (result) in
+            print(result)
+            completion()
         }
         
     }

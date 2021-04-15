@@ -20,12 +20,12 @@ enum EndPoint {
         return components.url
     }
     
-    static func postUrl(with path: Path) -> URL? {
+    static func updateUrl(with path: Path, id : Int) -> URL? {
         var components = URLComponents()
         components.scheme = EndPoint.scheme
         components.port = 8080
         components.host = EndPoint.host
-        components.path = path.rawValue
+        components.path = path.rawValue + "/\(id)"
         return components.url
     }
     
@@ -38,3 +38,4 @@ enum Path: String {
     case doing = "/board/progress"
     case done = "/board/done"
 }
+    

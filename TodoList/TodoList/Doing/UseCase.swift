@@ -71,11 +71,12 @@ class UseCase {
         }
     }
     
-    func updateTask(body : Data, completion : @escaping (Bool) -> Void) {
-        URLSessionManager().requestPost(with: .lists, method: .put, body: body) { result in
+    func updateTask(body : Data, id : Int, completion : @escaping (Task) -> Void) {
+        URLSessionManager().requestUpdate(with: .lists, method: .put, body: body , id: id) { result in
             switch result {
             case .success(let data):
-                guard let task = Decoder.decode(result: data) else {
+                guard let task = Decoder.decode(data: data) else {
+                    print("Update Decode Error")
                     return
                 }
                 completion(task)
