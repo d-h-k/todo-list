@@ -130,6 +130,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		BF4DEF2126282D5A00FE5207 /* UseCase */ = {
+			isa = PBXGroup;
+			children = (
+				D0F41D34261ED86E0024D7B1 /* UseCase.swift */,
+				BF4DEED3262722E700FE5207 /* AddTaskUseCase.swift */,
+			);
+			path = UseCase;
+			sourceTree = "<group>";
+		};
 		BF7EB25D261C3CBF003EB682 = {
 			isa = PBXGroup;
 			children = (
@@ -159,8 +168,8 @@
 				BF7EB29F261C418B003EB682 /* Notification+Extension.swift */,
 				D09A58342625748800DA620A /* DragDelegate.swift */,
 				D09A584B2625783100DA620A /* DropDelegate.swift */,
-				BF4DEED3262722E700FE5207 /* AddTaskUseCase.swift */,
 				BF4DEF13262802C000FE5207 /* StaticText.swift */,
+				BF4DEF2126282D5A00FE5207 /* UseCase */,
 				D09A5828262573C300DA620A /* Controllers */,
 				D09A5830262573EC00DA620A /* Views */,
 				D09A582C262573D800DA620A /* Apps */,
@@ -197,7 +206,6 @@
 			children = (
 				BFBF30E3261D4E65000BDDE3 /* DoingDataSource.swift */,
 				D0F41D602622C99F0024D7B1 /* DoingDTO.swift */,
-				D0F41D34261ED86E0024D7B1 /* UseCase.swift */,
 				D09A581826256A5800DA620A /* DoingDelegate.swift */,
 			);
 			path = Doing;
