@@ -101,7 +101,7 @@ class AddTaskViewController: UIViewController {
     }
     
     func requestComplete() {
-        NotificationCenter.default.post(name: .taskDropped, object: self)
+        NotificationCenter.default.post(name: .dataReload, object: self)
         DispatchQueue.main.async {
             self.dismiss(animated : true)
         }

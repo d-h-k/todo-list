@@ -34,6 +34,7 @@ class MainViewController: UIViewController {
     private let activityDataSource = ActivityTableViewDataSource()
     private var addButton : Mapping!
 
+    private var taskDTO = TaskDTO()
     
     lazy var closure : ((TaskObject) -> Void) = { object in
         guard let storyBoard = self.storyboard else {
@@ -55,8 +56,15 @@ class MainViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(activityTableViewReload), name: .activityAdded, object: nil)
 
         addButton = Mapping(buttons: addButtons)
+        
+        loadTask()
+        NotificationCenter.default.addObserver(self, selector: #selector(reload), name: .dataReload, object: nil)
     }
 
+    @objc func reload() {
+        loadTask()
+    }
+    
     @objc func activityTableViewReload() {
         DispatchQueue.main.async {
             self.activityTableView.reloadData()
@@ -67,6 +75,16 @@ class MainViewController: UIViewController {
         doDelegate.handler = closure
         doingDelegate.handler = closure
         doneDelegate.handler = closure
+    }
+    
+    func loadTask(){
+        UseCase().loadTasks { [weak self] tasks in
+            self?.taskDTO.filter(tasks: tasks)
+            DoDTO.shared.update(tasks : self?.taskDTO.todos ?? [])
+            DoingDTO.shared.update(tasks : self?.taskDTO.doing ?? [])
+            DoneDTO.shared.update(tasks : self?.taskDTO.done ?? [])
+            NotificationCenter.default.post(name: .tableReload, object: self)
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
