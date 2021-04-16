@@ -13,6 +13,9 @@ class MainViewController: UIViewController {
     @IBOutlet weak var activityTableView: UITableView!
     
     @IBOutlet var addButtons: [UIButton]!
+    @IBOutlet weak var toDoCount: UILabel!
+    @IBOutlet weak var doingCount: UILabel!
+    @IBOutlet weak var doneCount: UILabel!
     
     private let activityWidth : CGFloat = 428
     
@@ -51,6 +54,13 @@ class MainViewController: UIViewController {
         activityTrailingConstraint.constant -= activityWidth
         setDelegateHandler()
 
+        toDoCount.layer.cornerRadius = toDoCount.frame.width / 2
+        toDoCount.clipsToBounds = true
+        doingCount.layer.cornerRadius = toDoCount.frame.width / 2
+        doingCount.clipsToBounds = true
+        doneCount.layer.cornerRadius = toDoCount.frame.width / 2
+        doneCount.clipsToBounds = true
+        
         activityTableView.register(UINib(nibName: "ActivityViewCell", bundle: nil), forCellReuseIdentifier: ActivityViewCell.identifier)
         activityTableView.dataSource = activityDataSource
         NotificationCenter.default.addObserver(self, selector: #selector(activityTableViewReload), name: .activityAdded, object: nil)
@@ -59,8 +69,17 @@ class MainViewController: UIViewController {
         
         loadTask()
         NotificationCenter.default.addObserver(self, selector: #selector(reload), name: .dataReload, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(updateCount), name: .countUpdated, object: nil)
     }
 
+    @objc func updateCount() {
+        DispatchQueue.main.async {
+            self.toDoCount.text = String(DoDTO.shared.count())
+            self.doingCount.text = String(DoingDTO.shared.count())
+            self.doneCount.text = String(DoneDTO.shared.count())
+        }
+    }
+    
     @objc func reload() {
         loadTask()
     }
@@ -77,13 +96,14 @@ class MainViewController: UIViewController {
         doneDelegate.handler = closure
     }
     
-    func loadTask(){
+    func loadTask() {
         UseCase().loadTasks { [weak self] tasks in
             self?.taskDTO.filter(tasks: tasks)
             DoDTO.shared.update(tasks : self?.taskDTO.todos ?? [])
             DoingDTO.shared.update(tasks : self?.taskDTO.doing ?? [])
             DoneDTO.shared.update(tasks : self?.taskDTO.done ?? [])
             NotificationCenter.default.post(name: .tableReload, object: self)
+            NotificationCenter.default.post(name: .countUpdated, object: self)
         }
     }
     
