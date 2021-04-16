@@ -40,7 +40,10 @@ class DoDelegate: NSObject, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let action = UIContextualAction(style: .destructive, title: nil) { (action, view, completion) in
-            tableView.deleteRows(at: [indexPath], with: .automatic)
+            DoDTO.shared.delete(index: indexPath.section)
+            tableView.deleteSections(IndexSet(indexPath.section...indexPath.section), with: .automatic)
+            tableView.reloadData()
+            NotificationCenter.default.post(name: .countUpdated, object: self)
             completion(true)
         }
         action.image = UIImage(systemName: "trash")
@@ -65,6 +68,13 @@ class DoDelegate: NSObject, UITableViewDelegate {
             }
             
             let delete = UIAction(title: Text.delete, attributes: .destructive) { action in
+                guard let cell = tableView.cellForRow(at: indexPath) as? TaskTableViewCell else { return }
+                AddTaskUseCase().delete(taskId: cell.id) { result in
+                    if result == true {
+                        NotificationCenter.default.post(name: .dataReload, object: self)
+                        NotificationCenter.default.post(name: .countUpdated, object: self)
+                    }
+                }
                 DoDTO.shared.delete(index: indexPath.section)
                 tableView.deleteSections(IndexSet(indexPath.section...indexPath.section), with: .fade)
                 tableView.reloadData()

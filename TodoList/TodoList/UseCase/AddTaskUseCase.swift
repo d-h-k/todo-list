@@ -27,6 +27,10 @@ class AddTaskUseCase {
         }
     }
     
+    func delete(taskId: Int, completion: @escaping (Bool) -> Void) {
+        UseCase().deleteTask(body: Data(), id: taskId, completion: completion)
+    }
+    
     private func encode(title : String?, content : String?, category : TaskState) -> Data? {
         guard let title = title, let content = content else {
             return nil

@@ -13,4 +13,5 @@ extension Notification.Name {
     static let activityAdded = Notification.Name(rawValue: "activityAdded")
     static let tableReload = Notification.Name(rawValue: "tableReload")
     static let dataReload = Notification.Name(rawValue: "dataReload")
+    static let countUpdated = Notification.Name(rawValue: "countUpdated")
 }

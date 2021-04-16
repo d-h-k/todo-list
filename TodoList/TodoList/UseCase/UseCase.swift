@@ -48,4 +48,15 @@ class UseCase {
             }
         }
     }
+    
+    func deleteTask(body : Data, id : Int, completion : @escaping (Bool) -> Void) {
+        URLSessionManager().requestUpdate(with: .lists, method: .delete, body: body , id: id) { result in
+            switch result {
+            case .success(_):
+                completion(true)
+            case .failure(_):
+                return
+            }
+        }
+    }
 }

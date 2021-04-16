@@ -29,10 +29,18 @@ class DoneDelegate: NSObject, UITableViewDelegate {
         return headerView
     }
     
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let action = UIContextualAction(style: .destructive, title: nil) { (action, view, completion) in
+            DoDTO.shared.delete(index: indexPath.section)
+            tableView.deleteSections(IndexSet(indexPath.section...indexPath.section), with: .automatic)
+            tableView.reloadData()
+            NotificationCenter.default.post(name: .countUpdated, object: self)
+            completion(true)
         }
+        action.image = UIImage(systemName: "trash")
+        let configuration = UISwipeActionsConfiguration(actions: [action])
+        configuration.performsFirstActionWithFullSwipe = false
+        return configuration
     }
     
     func tableView(_ tableView: UITableView, contextMenuConfigurationForRowAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
@@ -52,7 +60,13 @@ class DoneDelegate: NSObject, UITableViewDelegate {
             }
             
             let delete = UIAction(title: Text.delete, attributes: .destructive) { action in
-                // Perform delete API
+                guard let cell = tableView.cellForRow(at: indexPath) as? TaskTableViewCell else { return }
+                AddTaskUseCase().delete(taskId: cell.id) { result in
+                    if result == true {
+                        NotificationCenter.default.post(name: .dataReload, object: self)
+                        NotificationCenter.default.post(name: .countUpdated, object: self)
+                    }
+                }
                 DoneDTO.shared.delete(index: indexPath.section)
                 tableView.deleteSections(IndexSet(indexPath.section...indexPath.section), with: .fade)
                 tableView.reloadData()
