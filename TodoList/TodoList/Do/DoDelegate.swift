@@ -55,7 +55,7 @@ class DoDelegate: NSObject, UITableViewDelegate {
     func tableView(_ tableView: UITableView, contextMenuConfigurationForRowAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
         return UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { suggestedActions in
             
-            let share = UIAction(title: Text.moveComplete) { action in
+            let share = UIAction(title: Text.moveComplete) { [weak self] action in
                 let task = DoDTO.shared.move(index: indexPath.section)
                 NotificationCenter.default.post(name: .taskCompleted, object: self, userInfo: ["task": task])
             }

@@ -70,8 +70,18 @@ class MainViewController: UIViewController {
         loadTask()
         NotificationCenter.default.addObserver(self, selector: #selector(reload), name: .dataReload, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(updateCount), name: .countUpdated, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(complete), name: .taskCompleted, object: nil)
     }
 
+    @objc func complete(notification: Notification) {
+        guard let task = notification.userInfo?["task"] as? Task else {
+            return
+        }
+        AddTaskUseCase().update(title: task.title, content: task.contents, category: .done, taskId: task.id, completion: { [weak self] in
+            self?.loadTask()
+        })
+    }
+    
     @objc func updateCount() {
         DispatchQueue.main.async {
             self.toDoCount.text = String(DoDTO.shared.count())

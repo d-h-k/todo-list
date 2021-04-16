@@ -46,13 +46,7 @@ class DoneDelegate: NSObject, UITableViewDelegate {
     func tableView(_ tableView: UITableView, contextMenuConfigurationForRowAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
         return UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { suggestedActions in
             
-            let share = UIAction(title: Text.moveComplete) { action in
-                let task = DoDTO.shared.move(index: indexPath.section)
-                NotificationCenter.default.post(name: .taskCompleted, object: self, userInfo: ["task": task])
-            }
-            
             let rename = UIAction(title: Text.update) { [weak self] action in
-                //
                 guard let handler = self?.handler else { return }
                 guard let cell = tableView.cellForRow(at: indexPath) as? TaskTableViewCell else { return }
                 guard let title = cell.title.text, let contents = cell.content.text else { return }
@@ -72,7 +66,7 @@ class DoneDelegate: NSObject, UITableViewDelegate {
                 tableView.reloadData()
             }
             
-            return UIMenu(title: "", children: [share, rename, delete])
+            return UIMenu(title: "", children: [rename, delete])
         }
     }
 }

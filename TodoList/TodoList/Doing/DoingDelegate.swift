@@ -53,7 +53,6 @@ class DoingDelegate: NSObject, UITableViewDelegate {
             }
             
             let rename = UIAction(title: Text.update) { [weak self] action in
-                //
                 guard let handler = self?.handler else { return }
                 guard let cell = tableView.cellForRow(at: indexPath) as? TaskTableViewCell else { return }
                 guard let title = cell.title.text, let contents = cell.content.text else { return }
