@@ -93,9 +93,9 @@ class MainViewController: UIViewController {
     
     @objc func updateCount() {
         DispatchQueue.main.async {
-            self.toDoCount.text = String(DoDTO.shared.count())
-            self.doingCount.text = String(DoingDTO.shared.count())
-            self.doneCount.text = String(DoneDTO.shared.count())
+            self.toDoCount.text = String(self.doDTO.count())
+            self.doingCount.text = String(self.doingDTO.count())
+            self.doneCount.text = String(self.doneDTO.count())
         }
     }
     
