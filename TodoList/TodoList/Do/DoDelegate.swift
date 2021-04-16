@@ -27,6 +27,15 @@ class DoDelegate: NSObject, UITableViewDelegate {
         completion(TaskObject(title: title, content: contents, category: category, id: id))
     }
     
+    func deleteTask(id: Int) {
+        AddTaskUseCase().delete(taskId: id) { result in
+            if result == true {
+                NotificationCenter.default.post(name: .dataReload, object: self)
+                NotificationCenter.default.post(name: .countUpdated, object: self)
+            }
+        }
+    }
+    
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         let cellSpacingHeight: CGFloat = 15
         return cellSpacingHeight
@@ -40,10 +49,8 @@ class DoDelegate: NSObject, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let action = UIContextualAction(style: .destructive, title: nil) { (action, view, completion) in
-            DoDTO.shared.delete(index: indexPath.section)
-            tableView.deleteSections(IndexSet(indexPath.section...indexPath.section), with: .automatic)
-            tableView.reloadData()
-            NotificationCenter.default.post(name: .countUpdated, object: self)
+            guard let cell = tableView.cellForRow(at: indexPath) as? TaskTableViewCell else { return }
+            self.deleteTask(id: cell.id)
             completion(true)
         }
         action.image = UIImage(systemName: "trash")
@@ -69,15 +76,7 @@ class DoDelegate: NSObject, UITableViewDelegate {
             
             let delete = UIAction(title: Text.delete, attributes: .destructive) { action in
                 guard let cell = tableView.cellForRow(at: indexPath) as? TaskTableViewCell else { return }
-                AddTaskUseCase().delete(taskId: cell.id) { result in
-                    if result == true {
-                        NotificationCenter.default.post(name: .dataReload, object: self)
-                        NotificationCenter.default.post(name: .countUpdated, object: self)
-                    }
-                }
-                DoDTO.shared.delete(index: indexPath.section)
-                tableView.deleteSections(IndexSet(indexPath.section...indexPath.section), with: .fade)
-                tableView.reloadData()
+                self.deleteTask(id: cell.id)
             }
             
             return UIMenu(title: "", children: [share, rename, delete])
