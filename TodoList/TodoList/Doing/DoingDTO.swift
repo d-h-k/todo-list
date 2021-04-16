@@ -7,7 +7,7 @@
 
 import Foundation
 
-class DoingDTO {
+class DoingDTO: DTOable {
     static let shared = DoingDTO()
     
     private var tasks: [Task]

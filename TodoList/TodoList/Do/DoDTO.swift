@@ -7,7 +7,16 @@
 
 import Foundation
 
-class DoDTO {
+protocol DTOable {
+    func count() -> Int
+    func configure(index: Int) -> Task
+    func move(index: Int) -> Task
+    func delete(index: Int)
+    func insert(index: Int, task: Task)
+    func filter(task: Task)
+}
+
+class DoDTO: DTOable {
     static let shared = DoDTO()
     
     private var tasks: [Task]

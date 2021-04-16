@@ -7,7 +7,7 @@
 
 import Foundation
 
-class DoneDTO {
+class DoneDTO: DTOable {
     static let shared = DoneDTO()
     
     private var tasks: [Task]
@@ -44,5 +44,9 @@ class DoneDTO {
         tasks = tasks.filter {
             return $0 != task
         }
+    }
+    
+    func move(index: Int) -> Task {
+        return tasks[index]
     }
 }

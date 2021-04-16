@@ -19,18 +19,16 @@ class MainViewController: UIViewController {
     
     private let activityWidth : CGFloat = 428
     
-    private let doDataSource = DoDataSource()
-    private let doDelegate = DoDelegate()
+    private let doDTO = DoDTO()
+    private let doingDTO = DoingDTO()
+    private let doneDTO = DoneDTO()
+    
     private let doDragDelegate = DoDragDelegate()
     private let doDropDelegate = DoDropDelegate()
     
-    private let doingDataSource = DoingDataSource()
-    private let doingDelegate = DoingDelegate()
     private let doingDragDelegate = DoingDragDelegate()
     private let doingDropDelegate = DoingDropDelegate()
     
-    private let doneDataSource = DoneDataSource()
-    private let doneDelegate = DoneDelegate()
     private let doneDragDelegate = DoneDragDelegate()
     private let doneDropDelegate = DoneDropDelegate()
     
@@ -52,7 +50,6 @@ class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         activityTrailingConstraint.constant -= activityWidth
-        setDelegateHandler()
 
         toDoCount.layer.cornerRadius = toDoCount.frame.width / 2
         toDoCount.clipsToBounds = true
@@ -71,6 +68,18 @@ class MainViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(reload), name: .dataReload, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(updateCount), name: .countUpdated, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(complete), name: .taskCompleted, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(route), name: .updateTask, object: nil)
+    }
+    
+    
+    @objc func route(notification: Notification) {
+        guard let taskObject = notification.userInfo?["taskObject"] as? TaskObject else { return }
+        guard let vc = storyboard?.instantiateViewController(withIdentifier: "Add") as? AddTaskViewController else {
+            return
+        }
+        vc.configure(status: .update, object : taskObject)
+        vc.modalPresentationStyle = .overFullScreen
+        present(vc, animated: true)
     }
 
     @objc func complete(notification: Notification) {
@@ -100,18 +109,12 @@ class MainViewController: UIViewController {
         }
     }
     
-    func setDelegateHandler() {
-        doDelegate.handler = closure
-        doingDelegate.handler = closure
-        doneDelegate.handler = closure
-    }
-    
     func loadTask() {
         UseCase().loadTasks { [weak self] tasks in
             self?.taskDTO.filter(tasks: tasks)
-            DoDTO.shared.update(tasks : self?.taskDTO.todos ?? [])
-            DoingDTO.shared.update(tasks : self?.taskDTO.doing ?? [])
-            DoneDTO.shared.update(tasks : self?.taskDTO.done ?? [])
+            self?.doDTO.update(tasks : self?.taskDTO.todos ?? [])
+            self?.doingDTO.update(tasks : self?.taskDTO.doing ?? [])
+            self?.doneDTO.update(tasks : self?.taskDTO.done ?? [])
             NotificationCenter.default.post(name: .tableReload, object: self)
             NotificationCenter.default.post(name: .countUpdated, object: self)
         }
@@ -121,18 +124,18 @@ class MainViewController: UIViewController {
         guard let vc = segue.destination as? TaskViewController else { return }
         switch segue.identifier {
         case "ToDo":
-            vc.dataSource = doDataSource
-            vc.delegate = doDelegate
+            vc.delegate = Delegate(dto: doDTO)
+            vc.dataSource = DataSource(dto: doDTO)
             vc.dragDelegate = doDragDelegate
             vc.dropDelegate = doDropDelegate
         case "Doing":
-            vc.dataSource = doingDataSource
-            vc.delegate = doingDelegate
+            vc.delegate = Delegate(dto: doingDTO)
+            vc.dataSource = DataSource(dto: doingDTO)
             vc.dragDelegate = doingDragDelegate
             vc.dropDelegate = doingDropDelegate
         case "Done":
-            vc.dataSource = doneDataSource
-            vc.delegate = doneDelegate
+            vc.delegate = Delegate(dto: doneDTO)
+            vc.dataSource = DataSource(dto: doneDTO)
             vc.dragDelegate = doneDragDelegate
             vc.dropDelegate = doneDropDelegate
         default:

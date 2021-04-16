@@ -1,5 +1,5 @@
 //
-//  DoingDelegate.swift
+//  DoDelegate.swift
 //  TodoList
 //
 //  Created by Ador on 2021/04/13.
@@ -7,15 +7,19 @@
 
 import UIKit
 
-class DoingDelegate: NSObject, UITableViewDelegate {
-    var handler: ((TaskObject) -> Void)?
-    
-    override init() {
-        self.handler = nil
-    }
-    
-    func updateTask(title: String, contents: String, category : TaskState, id : Int, completion: @escaping (TaskObject) -> Void) {
-        completion(TaskObject(title: title, content: contents, category: category, id: id))
+struct TaskObject {
+    let title : String
+    let content : String
+    let category : TaskState
+    let id : Int
+}
+
+class Delegate: NSObject, UITableViewDelegate {
+     
+    private var dto: DTOable
+   
+    init(dto: DTOable) {
+        self.dto = dto
     }
     
     func deleteTask(id: Int) {
@@ -53,16 +57,16 @@ class DoingDelegate: NSObject, UITableViewDelegate {
     func tableView(_ tableView: UITableView, contextMenuConfigurationForRowAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
         return UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { suggestedActions in
             
-            let share = UIAction(title: Text.moveComplete) { action in
-                let task = DoingDTO.shared.move(index: indexPath.section)
-                NotificationCenter.default.post(name: .dataReload, object: self, userInfo: ["task": task])
+            let share = UIAction(title: Text.moveComplete) { [weak self] action in
+                guard let task = self?.dto.move(index: indexPath.section) else { return }
+                NotificationCenter.default.post(name: .taskCompleted, object: self, userInfo: ["task": task])
             }
             
             let rename = UIAction(title: Text.update) { [weak self] action in
-                guard let handler = self?.handler else { return }
                 guard let cell = tableView.cellForRow(at: indexPath) as? TaskTableViewCell else { return }
                 guard let title = cell.title.text, let contents = cell.content.text else { return }
-                self?.updateTask(title: title, contents: contents,category: cell.category, id : cell.id, completion: handler)
+                let object = TaskObject(title: title, content: contents, category: cell.category, id: cell.id)
+                NotificationCenter.default.post(name: .updateTask, object: self, userInfo: ["taskObject": object])
             }
             
             let delete = UIAction(title: Text.delete, attributes: .destructive) { action in

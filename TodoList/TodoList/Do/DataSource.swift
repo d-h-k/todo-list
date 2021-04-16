@@ -1,22 +1,28 @@
 //
-//  DoneDataSource.swift
+//  DoDataSource.swift
 //  TodoList
 //
-//  Created by Ador on 2021/04/11.
+//  Created by Ador on 2021/04/08.
 //
 
 import UIKit
 
-class DoneDataSource : NSObject { }
+class DataSource : NSObject {
+    private var dto: DTOable
+    
+    init(dto: DTOable) {
+        self.dto = dto
+    }
+}
 
-extension DoneDataSource : UITableViewDataSource {
+extension DataSource : UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection
         section: Int) -> Int {
         return 1
     }
    
     func numberOfSections(in tableView: UITableView) -> Int {
-        return DoneDTO.shared.count()
+        return dto.count()
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -24,7 +30,7 @@ extension DoneDataSource : UITableViewDataSource {
             return UITableViewCell()
         }
         
-        let task = DoneDTO.shared.configure(index: indexPath.section)
+        let task = dto.configure(index: indexPath.section)
         cell.configure(task: task)
 
         return cell

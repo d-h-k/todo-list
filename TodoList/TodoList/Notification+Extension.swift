@@ -14,4 +14,5 @@ extension Notification.Name {
     static let tableReload = Notification.Name(rawValue: "tableReload")
     static let dataReload = Notification.Name(rawValue: "dataReload")
     static let countUpdated = Notification.Name(rawValue: "countUpdated")
+    static let updateTask = Notification.Name(rawValue: "updateTask")
 }
