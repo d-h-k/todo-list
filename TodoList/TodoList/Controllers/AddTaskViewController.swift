@@ -29,6 +29,7 @@ class AddTaskViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        popUp.layer.cornerRadius = 10
         updateUI()
         
         NotificationCenter.default.addObserver(self, selector: #selector(adjustPopUp), name: UIResponder.keyboardWillShowNotification, object: nil)
@@ -103,6 +104,9 @@ class AddTaskViewController: UIViewController {
     func requestComplete() {
         NotificationCenter.default.post(name: .dataReload, object: self)
         DispatchQueue.main.async {
+            guard let title = self.titleTextField.text else { return }
+            ActivityDTO.shared.insert(activity: title)
+            NotificationCenter.default.post(name: .activityAdded, object: self)
             self.dismiss(animated : true)
         }
     }

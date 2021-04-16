@@ -10,10 +10,9 @@ import Foundation
 class ActivityDTO {
     static let shared = ActivityDTO()
     
-    var activities: [String] = ["1", "2", "3"]
+    var activities: [String] = []
     
     func insert(activity: String) {
         activities.insert(activity, at: 0)
     }
-    
 }
